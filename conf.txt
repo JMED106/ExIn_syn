@@ -1,0 +1,123 @@
+###################################################
+# Config file: system parameters and architecture #
+###################################################
+# General options, default values (can be overridden by command line options)
+#̣ ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+Parameters:
+  -delta --delta:
+    description: "Heterogeneity of the network."
+    default:     0.1
+    name:        "<delta>"
+    choices:     ~
+  -eta --eta:
+    description: "Mean external current."
+    default:     1.0
+    name:        "<eta>"
+    choices:     ~
+  -j --coupling:
+    description: "Coupling of the populations."
+    default:     0.0
+    name:        "<j>"
+    choices:     ~
+  -taume --taume:
+    description: "Excitatory membrane time constant."
+    default:     1.0
+    name:        "<taume>"
+    choices:     ~
+  -taumi --taumi:
+    description: "Inhibitory membrane time constant."
+    default:     1.0
+    name:        "<taumi>"
+    choices:     ~
+  -taude --taude:
+    description: "Excitatory synaptic time constant."
+    default:     1.0
+    name:        "<taude>"
+    choices:     ~
+  -taudi --taudi:
+    description: "Inhibitory synaptic time constant."
+    default:     1.0
+    name:        "<taudi>"
+    choices:     ~
+  -faketau --faketau:
+    description: "General Time scale."
+    default:     1E-3
+    name:        "<faketau>"
+    choices:     ~
+Simulation:
+  -f --file:
+    description: "Configuration file."
+    default:     "./conf.txt"
+    name:        "<conf file>"
+    choices:     ~
+  -ic --initconds:
+    description: "Override initial conditions generator."
+    default:     False
+    name:        "<initconds>"
+    choices:     [False ,True]
+  -ext --external:
+    description: "Load external custom point."
+    default:     None
+    name:        "<ext_cond>"
+    choices:     ~
+  -oic --overrideic:
+    description: "Override initial conditions generator."
+    default:     False
+    name:        "<overinitconds>"
+    choices:     [True, False]
+  -system --system:
+    description: "Systems to be simulated."
+    default:     'fr'
+    name:        "<system>"
+    choices:     ['qif', 'fr', 'both']
+  -tfinal --tfinal:
+    description: "Total time of simulation (in dt time, a.u.)."
+    default:     100.0
+    name:        "<tfinal>"
+    choices:     ~
+  -loop --loop:
+    description: "Multiplier of total time (variables will still have total_time length)"
+    default:     1.0
+    name:        "<loop>"
+    choices:     ~
+  -dt --timestep:
+    description: "Time step (a.u.)."
+    default:     0.001
+    name:        "<dt>"
+    choices:     ~
+  -t0 --inittime:
+    description: "Initial time (a.u.)."
+    default:     0.0
+    name:        "<t0>"
+    choices:     ~
+  -nos --nosave:
+    description: "Don't save data to dictionary."
+    default:     False
+    name:        "<no-save>"
+    choices:     ~
+  -db --debug:
+    description: "Debugging level. Default is INFO."
+    default:     DEBUG
+    name:        "<debug>"
+    choices:     [DEBUG, INFO, ERROR, WARNING, CRITICAL]
+  -pl --plot:
+    description: "Saving minimal data and plotting."
+    default:     False
+    name:        "<plot>"
+    choices:     [True, False]
+  -gpl --gplot:
+    description: "Preliminary plotting with gnuplot."
+    default:     False
+    name:        "<gplot>"
+    choices:     [True, False]
+  -rast --raster:
+    description: "Saving raster plot."
+    default:     False
+    name:        "<raster>"
+    choices:     [True, False]
+  -Frq --freqAnalysis:
+    description: "Frequency analysis.."
+    default:     False
+    name:        "<freqA>"
+    choices:     [True, False]
+

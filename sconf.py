@@ -54,7 +54,7 @@ def parser_init():
     return conf_file, debug_level, args, hlp
 
 
-def parser(config_file, arguments=None, description=None, usage=None):
+def parser(config_file, arguments=None, description=None, usage=None, parameters=True):
     """ Function to handle arguments from CLI:
         Second Parsing -  We parse simulation parameters.
         :param config_file: YAML format. See config_doc variable and YAML documentation for more help.
@@ -90,6 +90,7 @@ def parser(config_file, arguments=None, description=None, usage=None):
 
     # Opening the configuration file to load parameters
     options = None
+    prmts = None
     ops = Options()
     try:
         options = yaml.load(file(config_file, 'rstored'))
@@ -108,10 +109,14 @@ def parser(config_file, arguments=None, description=None, usage=None):
         description=description,
         usage=usage)
     for group in options:
+        if parameters and group in ("Parameters", "parameters"):
+            prmts = {'dummy': 0}
         gr = pars.add_argument_group(group)
+        args = options[group]
         for key in options[group]:
             flags = key.split()
-            args = options[group]
+            if prmts and group in ("Parameters", "parameters"):
+                prmts[flags[0][1:]] = args[key]['default']
             if isinstance(args[key]['default'], bool):
                 gr.add_argument(*flags, default=args[key]['default'], help=args[key]['description'], dest=flags[0][1:],
                                 action='store_true')
@@ -133,6 +138,11 @@ def parser(config_file, arguments=None, description=None, usage=None):
     else:
         opts = vars(pars.parse_args())
         args = pars.parse_args(namespace=ops)
+    if prmts:
+        prmts.pop("dummy")
+        for key in prmts.keys():
+            prmts[key] = opts[key]
+        opts["parameters"] = prmts
 
     return opts, args
 

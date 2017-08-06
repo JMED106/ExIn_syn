@@ -9,15 +9,25 @@ Parameters:
     default:     0.1
     name:        "<delta>"
     choices:     ~
-  -eta --eta:
-    description: "Mean external current."
+  -etae --etae:
+    description: "Mean excitatory external current."
     default:     1.0
-    name:        "<eta>"
+    name:        "<etae>"
     choices:     ~
-  -j --coupling:
-    description: "Coupling of the populations."
+  -etai --etai:
+    description: "Mean inhibitory external current."
+    default:     1.0
+    name:        "<etai>"
+    choices:     ~
+  -jc --ccoupling:
+    description: "Cross Coupling of the populations."
     default:     0.0
-    name:        "<j>"
+    name:        "<jc>"
+    choices:     ~
+  -js --scoupling:
+    description: "Self-Coupling of the populations."
+    default:     0.0
+    name:        "<js>"
     choices:     ~
   -taume --taume:
     description: "Excitatory membrane time constant."
@@ -44,7 +54,28 @@ Parameters:
     default:     1E-3
     name:        "<faketau>"
     choices:     ~
-Simulation:
+Simulation constants:
+  -tfinal --tfinal:
+    description: "Total time of simulation (in dt time, a.u.)."
+    default:     100.0
+    name:        "<tfinal>"
+    choices:     ~
+  -loop --loop:
+    description: "Multiplier of total time (variables will still have total_time length)"
+    default:     1.0
+    name:        "<loop>"
+    choices:     ~
+  -dt --timestep:
+    description: "Time step (a.u.)."
+    default:     0.001
+    name:        "<dt>"
+    choices:     ~
+  -t0 --inittime:
+    description: "Initial time (a.u.)."
+    default:     0.0
+    name:        "<t0>"
+    choices:     ~
+Simulation options (non-mutable):
   -f --file:
     description: "Configuration file."
     default:     "./conf.txt"
@@ -70,26 +101,6 @@ Simulation:
     default:     'fr'
     name:        "<system>"
     choices:     ['qif', 'fr', 'both']
-  -tfinal --tfinal:
-    description: "Total time of simulation (in dt time, a.u.)."
-    default:     100.0
-    name:        "<tfinal>"
-    choices:     ~
-  -loop --loop:
-    description: "Multiplier of total time (variables will still have total_time length)"
-    default:     1.0
-    name:        "<loop>"
-    choices:     ~
-  -dt --timestep:
-    description: "Time step (a.u.)."
-    default:     0.001
-    name:        "<dt>"
-    choices:     ~
-  -t0 --inittime:
-    description: "Initial time (a.u.)."
-    default:     0.0
-    name:        "<t0>"
-    choices:     ~
   -nos --nosave:
     description: "Don't save data to dictionary."
     default:     False
@@ -120,4 +131,3 @@ Simulation:
     default:     False
     name:        "<freqA>"
     choices:     [True, False]
-

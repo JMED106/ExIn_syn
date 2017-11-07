@@ -7,6 +7,7 @@ import logging
 from sconf import parser_init, parser, log_conf
 from simu_lib import Data
 from simu_gui import MainGui
+from libQifFR import conf_w_to_z
 import progressbar as pb
 from timeit import default_timer as timer
 
@@ -58,6 +59,8 @@ def simulation(dat, var, q_in=None, q_out=None, updaterate=10000):
     p.update(dat.controls)
     re, ve, se, ri, vi, si = (var['re'], var['ve'], var['se'],
                               var['ri'], var['vi'], var['si'])
+    # Kuramoto order parameter and phase
+    Re, Pe, Ri, Pi = (var['Re'], var['Pe'], var['Ri'], var['Pi'])
 
     try:
         p.update(q_in.get_nowait())
@@ -104,17 +107,21 @@ def simulation(dat, var, q_in=None, q_out=None, updaterate=10000):
         if d.sys in ('fr', 'both'):
             re[kp] = re[k] + d.dt / p['taume'] * (p['delta'] / pi / p['taume'] + 2.0 * re[k] * ve[k])
             ve[kp] = ve[k] + d.dt / p['taume'] * (ve[k] ** 2 + p['etae'] - pi2 * (re[k] * p['taume']) ** 2
-                                                  - p['taume'] * p['jc'] * si[k])
-            se[kp] = se[k] + d.dt / p['taude'] * (-se[k] + re[kp])
-
+                                                  - p['taume'] * p['jc'] * si[k] + p['taume'] * p['js'] * se[k])
+            # se[kp] = se[k] + d.dt / p['taude'] * (-se[k] + re[kp])
+            se[kp] = 1.0 * re[kp]
             ri[kp] = ri[k] + d.dt / p['taumi'] * (p['delta'] / p['taumi'] / pi + 2.0 * ri[k] * vi[k])
             vi[kp] = vi[k] + d.dt / p['taumi'] * (vi[k] ** 2 + p['etai'] - p['taumi'] ** 2 * pi2 * ri[k] ** 2
                                                   + p['taumi'] * p['jc'] * se[k] - p['taumi'] * p['js'] * si[k])
-            si[kp] = si[k] + d.dt / p['taudi'] * (-si[k] + ri[kp])
+            # si[kp] = si[k] + d.dt / p['taudi'] * (-si[k] + ri[kp])
+            si[kp] = 1.0 * ri[kp]
 
             if math.isnan(re[kp]) or math.isnan(ri[kp]):
                 logger.error("Overflow encountered! Change parameters before running a new instance of the simulation.")
                 break
+        # Transform firing rate and mean membrane potential into Kuramoto order parameter and phase variables
+        Re[kp], Pe[kp] = conf_w_to_z(re[kp], ve[kp])
+        Ri[kp], Pi[kp] = conf_w_to_z(ri[kp], vi[kp])
 
         pbar.update(tstep)
         if p['exit'] or p['stop']:

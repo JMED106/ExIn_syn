@@ -452,8 +452,12 @@ class PlotDialog(Gtk.Dialog):
         column = grid.child_get_property(combo, 'left_attach')
         min_entry = grid.get_child_at(column + 2, row)
         max_entry = grid.get_child_at(column + 3, row)
-        min_entry.set_value(self._default_limits[element][0])
-        max_entry.set_value(self._default_limits[element][1])
+        try:
+            min_entry.set_value(self._default_limits[element][0])
+            max_entry.set_value(self._default_limits[element][1])
+        except KeyError:
+            min_entry.set_value(0)
+            max_entry.set_value(1.0)
         self._on_plt_value_changed(min_entry)
         self._on_plt_value_changed(max_entry)
 

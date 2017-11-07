@@ -63,7 +63,10 @@ class Data:
         v[len(v) - 1] = -v0
         s = np.ones(nsteps) * 0.1
         s[len(s) - 1] = s0
-        return {'r' + name: r, 'v' + name: v, 's' + name: s}
+        # Kuramoto order parameter and phase
+        R = np.ones(nsteps) * 0.1
+        P = np.ones(nsteps) * 0.1
+        return {'r' + name: r, 'v' + name: v, 's' + name: s, 'R' + name: R, 'P' + name: P}
 
 
 class PlotCanvas:

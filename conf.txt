@@ -49,6 +49,11 @@ Parameters:
     default:     1.0
     name:        "<taudi>"
     choices:     ~
+  -delay --delay:
+    description: "Delay constant."
+    default:     0.0
+    name:        "<delay>"
+    choices:     ~
   -faketau --faketau:
     description: "General Time scale."
     default:     1E-3
@@ -130,4 +135,9 @@ Simulation options (non-mutable):
     description: "Frequency analysis.."
     default:     False
     name:        "<freqA>"
+    choices:     [True, False]
+  -ap --allprmts:
+    description: "Display all parameters."
+    default:     False
+    name:        "<ap>"
     choices:     [True, False]

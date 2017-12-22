@@ -127,6 +127,16 @@ class MainGui:
         self.simu_thread = None
         self.graphs = []
 
+        # Populate the combo boxes with all the available parameters (optional):
+        if self.data.all:
+            combo = self.builder.get_object("comboboxtext1")
+            elements = len(self.elements)
+            for k in xrange(elements):
+                self.logger.debug("Element %d/%d." % (k, elements))
+                combo.set_active(0)
+                self._on_combo_changed(combo)
+                combo = self._on_add_clicked(None)
+
     def _explore_tree(self, widget):
         """ Function to completely explore the widgets of the GUI"""
         self._space += "-"
@@ -268,7 +278,8 @@ class MainGui:
 
     def _on_add_clicked(self, button):
         """ Add a new row to be able to modify another parameter"""
-        self.logger.debug('Element on %s modified' % button.get_name())
+        if button:
+            self.logger.debug('Element on %s modified' % button.get_name())
         # We freeze the previous combo box after checking an element is selected
         prev_row = self.listbox.get_children()[-1]
         prev_combo = self.find_widget_down(prev_row, "GtkComboBoxText")
@@ -302,6 +313,7 @@ class MainGui:
         newbox.pack_start(value, True, True, padding=4)
 
         self.window.show_all()
+        return combobox
 
     def newplot(self, menu):
         """ Function that creates a new Gtk window with canvas where a Matplotlib plot is created.
@@ -316,8 +328,13 @@ class MainGui:
         dialog.hide()
         if dialog.accept:
             title = dialog.plt_vars['y'] + ' vs. ' + dialog.plt_vars['x']
+            if dialog.polar:
+                self.logger.debug('Polar graph.')
+                polar = 'polar'
+            else:
+                polar = None
             graph = Graph(self.multi_var, title=title, pvars=(dialog.plt_vars['x'], dialog.plt_vars['y']),
-                          store=dialog.store, lims=self.data.lims)
+                          store=dialog.store, lims=self.data.lims, polar=polar)
             graph.nsteps = self.data.nsteps
             graph.ax.set_xlim(dialog.lim['x'])
             graph.ax.set_ylim(dialog.lim['y'])
@@ -387,7 +404,8 @@ class PlotDialog(Gtk.Dialog):
         signals = {"on_plt_combo_changed": self._on_plt_combo_changed,
                    "on_plt_value_changed": self._on_plt_value_changed,
                    "on_cancel": self._on_cancel,
-                   "on_accept": self._on_accept
+                   "on_accept": self._on_accept,
+                   "on_polar": self._on_polar
                    }
 
         builder.connect_signals(signals)
@@ -400,6 +418,7 @@ class PlotDialog(Gtk.Dialog):
         self.plt_vars = {'x': 't'}
         self.lim = {'x': lims['t'] * 1, 'y': [0, 1.0]}
         self._default_limits = lims
+        self.polar = False
 
         # If the parent is not the main window (to add another plot)
         if isinstance(pvars, Gtk.ListStore):
@@ -478,11 +497,13 @@ class PlotDialog(Gtk.Dialog):
         self.hide()
         self.accept = False
 
+    def _on_polar(self, event):
+        self.polar = not self.polar
 
 class Graph(Gtk.Window):
     """ Gtk object containing a canvas plus some other widget, such as a toolbox."""
 
-    def __init__(self, data, title='Matplotlib', size=(800, 500), pvars=('t', 're'), store=None, lims=None):
+    def __init__(self, data, title='Matplotlib', size=(800, 500), pvars=('t', 're'), store=None, lims=None, polar=None):
         """ Initialization requires a memory shared data object (dictionary). And some key values
             representing the variables to be plotted.
         """
@@ -519,7 +540,7 @@ class Graph(Gtk.Window):
 
         # This can be put into a figure or a class ####################
         self.fig = plt.Figure(figsize=(10, 10), dpi=80)
-        self.ax = self.fig.add_subplot(111)
+        self.ax = self.fig.add_subplot(111, projection=polar)
         self.canvas = FigureCanvas(self.fig)
         ###############################################################
         self.box.pack_start(self.canvas, True, True, 0)
@@ -601,7 +622,7 @@ class Graph(Gtk.Window):
         if response == Gtk.ResponseType.OK:
             p, = self.ax.plot(self.xdata, self.ydata, animated=False)
             self.plots.append(p)
-            self.vars.append([self.vars[0][0], dialog.choice])
+            self.vars.append([dialog.choice[0], dialog.choice[1]])
         elif response == Gtk.ResponseType.CANCEL:
             pass
 
@@ -623,22 +644,50 @@ class DialogVar(Gtk.Dialog):
                             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
                              Gtk.STOCK_OK, Gtk.ResponseType.OK))
 
-        self.logger = logging.getLogger('gui.DialogVar')
+        self.logger = logging.getLogger('gui.DialogVar') 
         self.set_default_size(150, 100)
+        self.choice = ['t', 're']
 
         box = self.get_content_area()
-        label = Gtk.Label('New variable:')
-        box.pack_start(label, True, True, padding=10)
-        self.combo = Gtk.ComboBoxText.new()
-        MainGui.update_combobox(self.combo, model)
-        self.combo.connect("changed", self._on_plt_combo_changed)
-        box.pack_start(self.combo, True, True, padding=10)
+        labelx = Gtk.Label('New X (Angular) variable:')
+        box.pack_start(labelx, True, True, padding=10)
+        self.combo_x = Gtk.ComboBoxText.new()
+        MainGui.update_combobox(self.combo_x, model)
+        self.combo_x.connect("changed", self._on_plt_combo_x_changed)
+        box.pack_start(self.combo_x, True, True, padding=10)
+        labely = Gtk.Label('New Y (Polar) variable:')
+        box.pack_start(labely, True, True, padding=10)
+        self.combo_y = Gtk.ComboBoxText.new()
+        MainGui.update_combobox(self.combo_y, model)
+        self.combo_y.connect("changed", self._on_plt_combo_y_changed)
+        box.pack_start(self.combo_y, True, True, padding=10)
+
+        # Set default values
+        target = 't'
+        self.combo_x.set_active(0)
+        i = 0
+        while self.combo_x.get_active_text() != target:
+            i += 1
+            self.combo_x.set_active(i)
+        if i == 0:
+            self.combo_y.set_active(1)
+        else:
+            self.combo_y.set_active(0)
         self.show_all()
 
-    def _on_plt_combo_changed(self, combo):
+    def _on_plt_combo_x_changed(self, combo):
         """ Changing the combobox will set the variable tag to pass to the graphing class """
         name = combo.get_name()
         self.logger.debug('Element on %s modified' % name)
         # Let's get the name of the variable
         element = combo.get_active_text()
-        self.choice = element
+        self.choice[0] = element
+
+    def _on_plt_combo_y_changed(self, combo):
+        """ Changing the combobox will set the variable tag to pass to the graphing class """
+        name = combo.get_name()
+        self.logger.debug('Element on %s modified' % name)
+        # Let's get the name of the variable
+        element = combo.get_active_text()
+
+        self.choice[1] = element

@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3a868d6b-8ed2-422e-853f-b311a36b8941" name="Default" comment="Working version. Stable GUI, stable simulation. &#10;Two populations with synaptic kinetics coupled with a common strength &#10;parameter (jc: j cross). Inhibitory population can exhibit recurrent&#10;coupling by means of a self coupling (js: j self).&#10;&#10;Multiprocessing is used to run the simulation in a different thread. &#10;Communication is done using both queues (for parameter tuning) and &#10;shared memory (for accessing simulated data).">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libQifFR.py" />
+    <list default="true" id="3a868d6b-8ed2-422e-853f-b311a36b8941" name="Default" comment="Mino">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/conf.txt" afterPath="$PROJECT_DIR$/conf.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libQifFR.py" afterPath="$PROJECT_DIR$/libQifFR.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plot_dialog.glade" afterPath="$PROJECT_DIR$/plot_dialog.glade" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/simu_gui.py" afterPath="$PROJECT_DIR$/simu_gui.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/simu_lib.py" afterPath="$PROJECT_DIR$/simu_lib.py" />
     </list>
@@ -33,64 +35,20 @@
     <favorites_list name="simulation" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.47447917">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-          <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/main.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="272">
-                  <caret line="111" column="33" lean-forward="true" selection-start-line="111" selection-start-column="33" selection-end-line="111" selection-end-column="33" />
-                  <folding>
-                    <element signature="e#22#32#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-          <file leaf-file-name="simu_lib.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/simu_lib.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-                  <folding>
-                    <element signature="e#0#18#0" expanded="true" />
-                    <element signature="e#322#2886#0" expanded="false" />
-                    <element signature="e#2911#3227#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="libQifFR.py" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/libQifFR.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="323">
-                  <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-                  <folding>
-                    <element signature="e#0#18#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="simu_gui.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/simu_gui.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="519">
-                  <caret line="460" column="45" lean-forward="true" selection-start-line="460" selection-start-column="45" selection-end-line="460" selection-end-column="45" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="531">
+              <caret line="123" column="64" lean-forward="true" selection-start-line="123" selection-start-column="64" selection-end-line="123" selection-end-column="64" />
+              <folding>
+                <element signature="e#22#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -108,6 +66,10 @@
       <find>Plot_</find>
       <find>PlotD</find>
       <find>PlotDia</find>
+      <find>target</find>
+      <find>polar</find>
+      <find>PePi</find>
+      <find>on_add</find>
     </findStrings>
     <replaceStrings>
       <replace>'fr'</replace>
@@ -132,10 +94,10 @@
         <option value="$PROJECT_DIR$/../../../../QIF_onepop/conductance_based/simu_lib.py" />
         <option value="$PROJECT_DIR$/../../../../QIF_onepop/conductance_based/sconf.py" />
         <option value="$PROJECT_DIR$/sconf.py" />
-        <option value="$PROJECT_DIR$/conf.txt" />
-        <option value="$PROJECT_DIR$/simu_gui.py" />
-        <option value="$PROJECT_DIR$/simu_lib.py" />
         <option value="$PROJECT_DIR$/libQifFR.py" />
+        <option value="$PROJECT_DIR$/simu_lib.py" />
+        <option value="$PROJECT_DIR$/simu_gui.py" />
+        <option value="$PROJECT_DIR$/conf.txt" />
         <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
@@ -147,9 +109,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="35" />
+    <option name="y" value="28" />
     <option name="width" value="1920" />
-    <option name="height" value="1045" />
+    <option name="height" value="1052" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -362,7 +324,14 @@
       <option name="project" value="LOCAL" />
       <updated>1509987443441</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Version without synapses and with recurrent connectivity in both populations.">
+      <created>1510055126993</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1510055126993</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TodoView">
@@ -375,7 +344,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="35" width="1920" height="1045" extended-state="6" />
+    <frame x="0" y="28" width="1920" height="1052" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24919786" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -407,7 +376,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Working version. Stable GUI, stable simulation. &#10;Two populations with synaptic kinetics coupled with a common strength &#10;parameter (jc: j cross). Inhibitory population can exhibit recurrent&#10;coupling by means of a self coupling (js: j self).&#10;&#10;Multiprocessing is used to run the simulation in a different thread. &#10;Communication is done using both queues (for parameter tuning) and &#10;shared memory (for accessing simulated data)." />
-    <option name="LAST_COMMIT_MESSAGE" value="Working version. Stable GUI, stable simulation. &#10;Two populations with synaptic kinetics coupled with a common strength &#10;parameter (jc: j cross). Inhibitory population can exhibit recurrent&#10;coupling by means of a self coupling (js: j self).&#10;&#10;Multiprocessing is used to run the simulation in a different thread. &#10;Communication is done using both queues (for parameter tuning) and &#10;shared memory (for accessing simulated data)." />
+    <MESSAGE value="Version without synapses and with recurrent connectivity in both populations." />
+    <option name="LAST_COMMIT_MESSAGE" value="Version without synapses and with recurrent connectivity in both populations." />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -447,8 +417,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#322#2886#0" expanded="false" />
-            <element signature="e#2911#3227#0" expanded="false" />
+            <element signature="e#3251#3567#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -493,8 +462,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#322#2886#0" expanded="false" />
-            <element signature="e#2911#3227#0" expanded="false" />
+            <element signature="e#3251#3567#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -539,8 +507,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#322#2886#0" expanded="false" />
-            <element signature="e#2911#3227#0" expanded="false" />
+            <element signature="e#3251#3567#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -585,8 +552,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#322#2886#0" expanded="false" />
-            <element signature="e#2911#3227#0" expanded="false" />
+            <element signature="e#3251#3567#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -631,8 +597,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#322#2886#0" expanded="false" />
-            <element signature="e#2911#3227#0" expanded="false" />
+            <element signature="e#3251#3567#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -677,8 +642,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#322#2886#0" expanded="false" />
-            <element signature="e#2911#3227#0" expanded="false" />
+            <element signature="e#3251#3567#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -723,8 +687,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#322#2886#0" expanded="false" />
-            <element signature="e#2911#3227#0" expanded="false" />
+            <element signature="e#3251#3567#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -769,8 +732,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#322#2886#0" expanded="false" />
-            <element signature="e#2911#3227#0" expanded="false" />
+            <element signature="e#3251#3567#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -815,8 +777,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#322#2886#0" expanded="false" />
-            <element signature="e#2911#3227#0" expanded="false" />
+            <element signature="e#3251#3567#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -881,19 +842,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/conf.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="832">
-          <caret line="103" column="16" lean-forward="false" selection-start-line="103" selection-start-column="16" selection-end-line="103" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.PyCharm2017.1/system/python_stubs/-1247972723/gi/repository/Gtk/Dialog.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="409" column="8" lean-forward="false" selection-start-line="409" selection-start-column="8" selection-end-line="409" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -901,46 +853,50 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1106">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#18#0" expanded="false" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/conf.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/simu_gui.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="519">
-          <caret line="460" column="45" lean-forward="true" selection-start-line="460" selection-start-column="45" selection-end-line="460" selection-end-column="45" />
+        <state relative-caret-position="1020">
+          <caret line="359" column="0" lean-forward="false" selection-start-line="359" selection-start-column="0" selection-end-line="359" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/simu_lib.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#322#2886#0" expanded="false" />
-            <element signature="e#2911#3227#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/libQifFR.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        <state relative-caret-position="442">
+          <caret line="26" column="14" lean-forward="true" selection-start-line="26" selection-start-column="14" selection-end-line="26" selection-end-column="14" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simu_lib.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#3251#3567#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="111" column="33" lean-forward="true" selection-start-line="111" selection-start-column="33" selection-end-line="111" selection-end-column="33" />
+        <state relative-caret-position="531">
+          <caret line="123" column="64" lean-forward="true" selection-start-line="123" selection-start-column="64" selection-end-line="123" selection-end-column="64" />
           <folding>
             <element signature="e#22#32#0" expanded="true" />
           </folding>

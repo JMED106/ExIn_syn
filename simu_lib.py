@@ -42,12 +42,17 @@ class Data:
         if self.sys in ('fr', 'both'):
             self.systems.append('fr')
 
+        # Other simulation options here:
+        self.all = parameters['ap']
+
         # self.logger.debug("Simulating %s system(s)." % self.systems)
         self.controls = {'exit': False, 'pause': True, 'stop': False, 'x': None, 'y': None}
 
-        self.vars = {'t': self.tpoints, 'tstep': 0}
-        self.lims = {'t': [0.0, self.tfinal], 're': [0, 1], 'ri': [0, 1],
-                     've': [-2, 2], 'vi': [-2, 2], 'se': [0, 2], 'si': [0, 2]}
+        self.vars = {'t': self.tpoints, 'tstep': 0, 'PePi': np.ones(self.nsteps) * 1.0,
+                     'dummy': np.ones(self.nsteps) * 0.8}
+        self.lims = {'t': [0.0, self.tfinal], 're': [0, 1], 'ri': [0, 1], 'rwe': [0, 1], 'rwi': [0, 1],
+                     'Pe': [-np.pi, np.pi],
+                     've': [-2, 2], 'vi': [-2, 2], 'se': [0, 2], 'si': [0, 2], 'Pi': [-np.pi, np.pi]}
         # Output variables will be stored in dictionaries to make the Queue handling easy
         if self.sys != 'qif':
             self.exc = self.population(self.nsteps, 2.0, -1.0, 0.0, name="e")
@@ -66,7 +71,10 @@ class Data:
         # Kuramoto order parameter and phase
         R = np.ones(nsteps) * 0.1
         P = np.ones(nsteps) * 0.1
-        return {'r' + name: r, 'v' + name: v, 's' + name: s, 'R' + name: R, 'P' + name: P}
+        # Wilson-Cowan variables
+        rw = np.ones(nsteps) * 0.1
+        rw[len(r) - 1] = r0
+        return {'r' + name: r, 'rw' + name: rw, 'v' + name: v, 's' + name: s, 'R' + name: R, 'P' + name: P}
 
 
 class PlotCanvas:
